@@ -1,0 +1,148 @@
+<?xml version="1" encoding="UTF-8"?>
+<GAO_CONFIG>
+    <Version>3.0</Version>
+    <Mode>Standard</Mode>
+    <AoCore index="0" sample_clock="clk_sys" trig_type="0" storage_depth="4096" window_num="1" capture_amount="4096" implementation="0" trigger_pos="0" module_name="smstang_top" force_trigger_by_falling_edge="false" capture_init_data_enabled="false">
+        <SignalList>
+            <Signal capture_enable="true">ce_pix</Signal>
+            <Bus capture_enable="true" name="color[11:0]">
+                <Signal>color[11]</Signal>
+                <Signal>color[10]</Signal>
+                <Signal>color[9]</Signal>
+                <Signal>color[8]</Signal>
+                <Signal>color[7]</Signal>
+                <Signal>color[6]</Signal>
+                <Signal>color[5]</Signal>
+                <Signal>color[4]</Signal>
+                <Signal>color[3]</Signal>
+                <Signal>color[2]</Signal>
+                <Signal>color[1]</Signal>
+                <Signal>color[0]</Signal>
+            </Bus>
+            <Signal capture_enable="true">ce_cpu</Signal>
+            <Bus capture_enable="true" name="x[8:0]">
+                <Signal>x[8]</Signal>
+                <Signal>x[7]</Signal>
+                <Signal>x[6]</Signal>
+                <Signal>x[5]</Signal>
+                <Signal>x[4]</Signal>
+                <Signal>x[3]</Signal>
+                <Signal>x[2]</Signal>
+                <Signal>x[1]</Signal>
+                <Signal>x[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="y[8:0]">
+                <Signal>y[8]</Signal>
+                <Signal>y[7]</Signal>
+                <Signal>y[6]</Signal>
+                <Signal>y[5]</Signal>
+                <Signal>y[4]</Signal>
+                <Signal>y[3]</Signal>
+                <Signal>y[2]</Signal>
+                <Signal>y[1]</Signal>
+                <Signal>y[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="sms2hdmi_inst/mem_portA_addr[15:0]">
+                <Signal>sms2hdmi_inst/mem_portA_addr[15]</Signal>
+                <Signal>sms2hdmi_inst/mem_portA_addr[14]</Signal>
+                <Signal>sms2hdmi_inst/mem_portA_addr[13]</Signal>
+                <Signal>sms2hdmi_inst/mem_portA_addr[12]</Signal>
+                <Signal>sms2hdmi_inst/mem_portA_addr[11]</Signal>
+                <Signal>sms2hdmi_inst/mem_portA_addr[10]</Signal>
+                <Signal>sms2hdmi_inst/mem_portA_addr[9]</Signal>
+                <Signal>sms2hdmi_inst/mem_portA_addr[8]</Signal>
+                <Signal>sms2hdmi_inst/mem_portA_addr[7]</Signal>
+                <Signal>sms2hdmi_inst/mem_portA_addr[6]</Signal>
+                <Signal>sms2hdmi_inst/mem_portA_addr[5]</Signal>
+                <Signal>sms2hdmi_inst/mem_portA_addr[4]</Signal>
+                <Signal>sms2hdmi_inst/mem_portA_addr[3]</Signal>
+                <Signal>sms2hdmi_inst/mem_portA_addr[2]</Signal>
+                <Signal>sms2hdmi_inst/mem_portA_addr[1]</Signal>
+                <Signal>sms2hdmi_inst/mem_portA_addr[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="sms2hdmi_inst/mem_portA_wdata[11:0]">
+                <Signal>sms2hdmi_inst/mem_portA_wdata[11]</Signal>
+                <Signal>sms2hdmi_inst/mem_portA_wdata[10]</Signal>
+                <Signal>sms2hdmi_inst/mem_portA_wdata[9]</Signal>
+                <Signal>sms2hdmi_inst/mem_portA_wdata[8]</Signal>
+                <Signal>sms2hdmi_inst/mem_portA_wdata[7]</Signal>
+                <Signal>sms2hdmi_inst/mem_portA_wdata[6]</Signal>
+                <Signal>sms2hdmi_inst/mem_portA_wdata[5]</Signal>
+                <Signal>sms2hdmi_inst/mem_portA_wdata[4]</Signal>
+                <Signal>sms2hdmi_inst/mem_portA_wdata[3]</Signal>
+                <Signal>sms2hdmi_inst/mem_portA_wdata[2]</Signal>
+                <Signal>sms2hdmi_inst/mem_portA_wdata[1]</Signal>
+                <Signal>sms2hdmi_inst/mem_portA_wdata[0]</Signal>
+            </Bus>
+            <Signal capture_enable="true">sms2hdmi_inst/mem_portA_we</Signal>
+        </SignalList>
+        <Triggers>
+            <Trigger index="0">
+                <SignalList>
+                    <Bus restorename="x[8:0]">
+                        <Signal>x[8]</Signal>
+                        <Signal>x[7]</Signal>
+                        <Signal>x[6]</Signal>
+                        <Signal>x[5]</Signal>
+                        <Signal>x[4]</Signal>
+                        <Signal>x[3]</Signal>
+                        <Signal>x[2]</Signal>
+                        <Signal>x[1]</Signal>
+                        <Signal>x[0]</Signal>
+                    </Bus>
+                </SignalList>
+            </Trigger>
+            <Trigger index="1">
+                <SignalList>
+                    <Bus restorename="y[8:0]">
+                        <Signal>y[8]</Signal>
+                        <Signal>y[7]</Signal>
+                        <Signal>y[6]</Signal>
+                        <Signal>y[5]</Signal>
+                        <Signal>y[4]</Signal>
+                        <Signal>y[3]</Signal>
+                        <Signal>y[2]</Signal>
+                        <Signal>y[1]</Signal>
+                        <Signal>y[0]</Signal>
+                    </Bus>
+                </SignalList>
+            </Trigger>
+            <Trigger index="2"/>
+            <Trigger index="3"/>
+            <Trigger index="4"/>
+            <Trigger index="5"/>
+            <Trigger index="6"/>
+            <Trigger index="7"/>
+            <Trigger index="8"/>
+            <Trigger index="9"/>
+            <Trigger index="10"/>
+            <Trigger index="11"/>
+            <Trigger index="12"/>
+            <Trigger index="13"/>
+            <Trigger index="14"/>
+            <Trigger index="15"/>
+        </Triggers>
+        <MatchUnits>
+            <MatchUnit index="0" enabled="1" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="000000000" value1="000000000" trigger="0"/>
+            <MatchUnit index="1" enabled="1" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="000000000" value1="000000000" trigger="1"/>
+            <MatchUnit index="2" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="3" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="4" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="5" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="6" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="7" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="8" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="9" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="10" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="11" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="12" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="13" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="14" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="15" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+        </MatchUnits>
+        <Expressions type="Static">
+            <Expression>M0&amp;M1</Expression>
+        </Expressions>
+    </AoCore>
+    <GAO_ID>0010100101010001</GAO_ID>
+</GAO_CONFIG>

@@ -1,0 +1,210 @@
+<?xml version="1" encoding="UTF-8"?>
+<GAO_CONFIG>
+    <Version>3.0</Version>
+    <Mode>Standard</Mode>
+    <AoCore index="0" sample_clock="clk_pixel" trig_type="0" storage_depth="1024" window_num="1" capture_amount="1024" implementation="0" trigger_pos="0" module_name="smstang_top" force_trigger_by_falling_edge="false" capture_init_data_enabled="false">
+        <SignalList>
+            <Bus capture_enable="true" name="sms2hdmi_inst/cx[10:0]">
+                <Signal>sms2hdmi_inst/cx[10]</Signal>
+                <Signal>sms2hdmi_inst/cx[9]</Signal>
+                <Signal>sms2hdmi_inst/cx[8]</Signal>
+                <Signal>sms2hdmi_inst/cx[7]</Signal>
+                <Signal>sms2hdmi_inst/cx[6]</Signal>
+                <Signal>sms2hdmi_inst/cx[5]</Signal>
+                <Signal>sms2hdmi_inst/cx[4]</Signal>
+                <Signal>sms2hdmi_inst/cx[3]</Signal>
+                <Signal>sms2hdmi_inst/cx[2]</Signal>
+                <Signal>sms2hdmi_inst/cx[1]</Signal>
+                <Signal>sms2hdmi_inst/cx[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="sms2hdmi_inst/cy[9:0]">
+                <Signal>sms2hdmi_inst/cy[9]</Signal>
+                <Signal>sms2hdmi_inst/cy[8]</Signal>
+                <Signal>sms2hdmi_inst/cy[7]</Signal>
+                <Signal>sms2hdmi_inst/cy[6]</Signal>
+                <Signal>sms2hdmi_inst/cy[5]</Signal>
+                <Signal>sms2hdmi_inst/cy[4]</Signal>
+                <Signal>sms2hdmi_inst/cy[3]</Signal>
+                <Signal>sms2hdmi_inst/cy[2]</Signal>
+                <Signal>sms2hdmi_inst/cy[1]</Signal>
+                <Signal>sms2hdmi_inst/cy[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="sms2hdmi_inst/xcnt[10:0]">
+                <Signal>sms2hdmi_inst/xcnt[10]</Signal>
+                <Signal>sms2hdmi_inst/xcnt[9]</Signal>
+                <Signal>sms2hdmi_inst/xcnt[8]</Signal>
+                <Signal>sms2hdmi_inst/xcnt[7]</Signal>
+                <Signal>sms2hdmi_inst/xcnt[6]</Signal>
+                <Signal>sms2hdmi_inst/xcnt[5]</Signal>
+                <Signal>sms2hdmi_inst/xcnt[4]</Signal>
+                <Signal>sms2hdmi_inst/xcnt[3]</Signal>
+                <Signal>sms2hdmi_inst/xcnt[2]</Signal>
+                <Signal>sms2hdmi_inst/xcnt[1]</Signal>
+                <Signal>sms2hdmi_inst/xcnt[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="sms2hdmi_inst/ycnt[10:0]">
+                <Signal>sms2hdmi_inst/ycnt[10]</Signal>
+                <Signal>sms2hdmi_inst/ycnt[9]</Signal>
+                <Signal>sms2hdmi_inst/ycnt[8]</Signal>
+                <Signal>sms2hdmi_inst/ycnt[7]</Signal>
+                <Signal>sms2hdmi_inst/ycnt[6]</Signal>
+                <Signal>sms2hdmi_inst/ycnt[5]</Signal>
+                <Signal>sms2hdmi_inst/ycnt[4]</Signal>
+                <Signal>sms2hdmi_inst/ycnt[3]</Signal>
+                <Signal>sms2hdmi_inst/ycnt[2]</Signal>
+                <Signal>sms2hdmi_inst/ycnt[1]</Signal>
+                <Signal>sms2hdmi_inst/ycnt[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="sms2hdmi_inst/xx[7:0]">
+                <Signal>sms2hdmi_inst/xx[7]</Signal>
+                <Signal>sms2hdmi_inst/xx[6]</Signal>
+                <Signal>sms2hdmi_inst/xx[5]</Signal>
+                <Signal>sms2hdmi_inst/xx[4]</Signal>
+                <Signal>sms2hdmi_inst/xx[3]</Signal>
+                <Signal>sms2hdmi_inst/xx[2]</Signal>
+                <Signal>sms2hdmi_inst/xx[1]</Signal>
+                <Signal>sms2hdmi_inst/xx[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="sms2hdmi_inst/yy[7:0]">
+                <Signal>sms2hdmi_inst/yy[7]</Signal>
+                <Signal>sms2hdmi_inst/yy[6]</Signal>
+                <Signal>sms2hdmi_inst/yy[5]</Signal>
+                <Signal>sms2hdmi_inst/yy[4]</Signal>
+                <Signal>sms2hdmi_inst/yy[3]</Signal>
+                <Signal>sms2hdmi_inst/yy[2]</Signal>
+                <Signal>sms2hdmi_inst/yy[1]</Signal>
+                <Signal>sms2hdmi_inst/yy[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="sms2hdmi_inst/mem_portB_addr[15:0]">
+                <Signal>sms2hdmi_inst/mem_portB_addr[15]</Signal>
+                <Signal>sms2hdmi_inst/mem_portB_addr[14]</Signal>
+                <Signal>sms2hdmi_inst/mem_portB_addr[13]</Signal>
+                <Signal>sms2hdmi_inst/mem_portB_addr[12]</Signal>
+                <Signal>sms2hdmi_inst/mem_portB_addr[11]</Signal>
+                <Signal>sms2hdmi_inst/mem_portB_addr[10]</Signal>
+                <Signal>sms2hdmi_inst/mem_portB_addr[9]</Signal>
+                <Signal>sms2hdmi_inst/mem_portB_addr[8]</Signal>
+                <Signal>sms2hdmi_inst/mem_portB_addr[7]</Signal>
+                <Signal>sms2hdmi_inst/mem_portB_addr[6]</Signal>
+                <Signal>sms2hdmi_inst/mem_portB_addr[5]</Signal>
+                <Signal>sms2hdmi_inst/mem_portB_addr[4]</Signal>
+                <Signal>sms2hdmi_inst/mem_portB_addr[3]</Signal>
+                <Signal>sms2hdmi_inst/mem_portB_addr[2]</Signal>
+                <Signal>sms2hdmi_inst/mem_portB_addr[1]</Signal>
+                <Signal>sms2hdmi_inst/mem_portB_addr[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="sms2hdmi_inst/mem_portB_rdata[11:0]">
+                <Signal>sms2hdmi_inst/mem_portB_rdata[11]</Signal>
+                <Signal>sms2hdmi_inst/mem_portB_rdata[10]</Signal>
+                <Signal>sms2hdmi_inst/mem_portB_rdata[9]</Signal>
+                <Signal>sms2hdmi_inst/mem_portB_rdata[8]</Signal>
+                <Signal>sms2hdmi_inst/mem_portB_rdata[7]</Signal>
+                <Signal>sms2hdmi_inst/mem_portB_rdata[6]</Signal>
+                <Signal>sms2hdmi_inst/mem_portB_rdata[5]</Signal>
+                <Signal>sms2hdmi_inst/mem_portB_rdata[4]</Signal>
+                <Signal>sms2hdmi_inst/mem_portB_rdata[3]</Signal>
+                <Signal>sms2hdmi_inst/mem_portB_rdata[2]</Signal>
+                <Signal>sms2hdmi_inst/mem_portB_rdata[1]</Signal>
+                <Signal>sms2hdmi_inst/mem_portB_rdata[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="sms2hdmi_inst/rgb[23:0]">
+                <Signal>sms2hdmi_inst/rgb[23]</Signal>
+                <Signal>sms2hdmi_inst/rgb[22]</Signal>
+                <Signal>sms2hdmi_inst/rgb[21]</Signal>
+                <Signal>sms2hdmi_inst/rgb[20]</Signal>
+                <Signal>sms2hdmi_inst/rgb[19]</Signal>
+                <Signal>sms2hdmi_inst/rgb[18]</Signal>
+                <Signal>sms2hdmi_inst/rgb[17]</Signal>
+                <Signal>sms2hdmi_inst/rgb[16]</Signal>
+                <Signal>sms2hdmi_inst/rgb[15]</Signal>
+                <Signal>sms2hdmi_inst/rgb[14]</Signal>
+                <Signal>sms2hdmi_inst/rgb[13]</Signal>
+                <Signal>sms2hdmi_inst/rgb[12]</Signal>
+                <Signal>sms2hdmi_inst/rgb[11]</Signal>
+                <Signal>sms2hdmi_inst/rgb[10]</Signal>
+                <Signal>sms2hdmi_inst/rgb[9]</Signal>
+                <Signal>sms2hdmi_inst/rgb[8]</Signal>
+                <Signal>sms2hdmi_inst/rgb[7]</Signal>
+                <Signal>sms2hdmi_inst/rgb[6]</Signal>
+                <Signal>sms2hdmi_inst/rgb[5]</Signal>
+                <Signal>sms2hdmi_inst/rgb[4]</Signal>
+                <Signal>sms2hdmi_inst/rgb[3]</Signal>
+                <Signal>sms2hdmi_inst/rgb[2]</Signal>
+                <Signal>sms2hdmi_inst/rgb[1]</Signal>
+                <Signal>sms2hdmi_inst/rgb[0]</Signal>
+            </Bus>
+            <Signal capture_enable="true">sms2hdmi_inst/active</Signal>
+        </SignalList>
+        <Triggers>
+            <Trigger index="0">
+                <SignalList>
+                    <Bus restorename="sms2hdmi_inst/cx[10:0]">
+                        <Signal>sms2hdmi_inst/cx[10]</Signal>
+                        <Signal>sms2hdmi_inst/cx[9]</Signal>
+                        <Signal>sms2hdmi_inst/cx[8]</Signal>
+                        <Signal>sms2hdmi_inst/cx[7]</Signal>
+                        <Signal>sms2hdmi_inst/cx[6]</Signal>
+                        <Signal>sms2hdmi_inst/cx[5]</Signal>
+                        <Signal>sms2hdmi_inst/cx[4]</Signal>
+                        <Signal>sms2hdmi_inst/cx[3]</Signal>
+                        <Signal>sms2hdmi_inst/cx[2]</Signal>
+                        <Signal>sms2hdmi_inst/cx[1]</Signal>
+                        <Signal>sms2hdmi_inst/cx[0]</Signal>
+                    </Bus>
+                </SignalList>
+            </Trigger>
+            <Trigger index="1">
+                <SignalList>
+                    <Bus restorename="sms2hdmi_inst/cy[9:0]">
+                        <Signal>sms2hdmi_inst/cy[9]</Signal>
+                        <Signal>sms2hdmi_inst/cy[8]</Signal>
+                        <Signal>sms2hdmi_inst/cy[7]</Signal>
+                        <Signal>sms2hdmi_inst/cy[6]</Signal>
+                        <Signal>sms2hdmi_inst/cy[5]</Signal>
+                        <Signal>sms2hdmi_inst/cy[4]</Signal>
+                        <Signal>sms2hdmi_inst/cy[3]</Signal>
+                        <Signal>sms2hdmi_inst/cy[2]</Signal>
+                        <Signal>sms2hdmi_inst/cy[1]</Signal>
+                        <Signal>sms2hdmi_inst/cy[0]</Signal>
+                    </Bus>
+                </SignalList>
+            </Trigger>
+            <Trigger index="2"/>
+            <Trigger index="3"/>
+            <Trigger index="4"/>
+            <Trigger index="5"/>
+            <Trigger index="6"/>
+            <Trigger index="7"/>
+            <Trigger index="8"/>
+            <Trigger index="9"/>
+            <Trigger index="10"/>
+            <Trigger index="11"/>
+            <Trigger index="12"/>
+            <Trigger index="13"/>
+            <Trigger index="14"/>
+            <Trigger index="15"/>
+        </Triggers>
+        <MatchUnits>
+            <MatchUnit index="0" enabled="1" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="00010011011" value1="00000000000" trigger="0"/>
+            <MatchUnit index="1" enabled="1" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="0000000000" value1="0000000000" trigger="1"/>
+            <MatchUnit index="2" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="3" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="4" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="5" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="6" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="7" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="8" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="9" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="10" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="11" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="12" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="13" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="14" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="15" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+        </MatchUnits>
+        <Expressions type="Static">
+            <Expression>M0&amp;M1</Expression>
+        </Expressions>
+    </AoCore>
+    <GAO_ID>0010011000001110</GAO_ID>
+</GAO_CONFIG>
