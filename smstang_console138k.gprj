@@ -1,0 +1,86 @@
+<?xml version="1" encoding="UTF-8"?>
+<!DOCTYPE gowin-fpga-project>
+<Project>
+    <Template>FPGA</Template>
+    <Version>5</Version>
+    <Device name="GW5AST-138B" pn="GW5AST-LV138PG484AC1/I0">gw5ast138b-011</Device>
+    <FileList>
+        <File path="src/MC8123.v" type="file.verilog" enable="1"/>
+        <File path="src/SEGASYS1_PRGDEC.v" type="file.verilog" enable="1"/>
+        <File path="src/VM2413/attacktable.sv" type="file.verilog" enable="1"/>
+        <File path="src/VM2413/controller.sv" type="file.verilog" enable="1"/>
+        <File path="src/VM2413/envelopegenerator.sv" type="file.verilog" enable="1"/>
+        <File path="src/VM2413/envelopememory.sv" type="file.verilog" enable="1"/>
+        <File path="src/VM2413/feedbackmemory.sv" type="file.verilog" enable="1"/>
+        <File path="src/VM2413/lineartable.sv" type="file.verilog" enable="1"/>
+        <File path="src/VM2413/operator.sv" type="file.verilog" enable="1"/>
+        <File path="src/VM2413/opll.sv" type="file.verilog" enable="1"/>
+        <File path="src/VM2413/outputgenerator.sv" type="file.verilog" enable="1"/>
+        <File path="src/VM2413/outputmemory.sv" type="file.verilog" enable="1"/>
+        <File path="src/VM2413/phasegenerator.sv" type="file.verilog" enable="1"/>
+        <File path="src/VM2413/phasememory.sv" type="file.verilog" enable="1"/>
+        <File path="src/VM2413/registermemory.sv" type="file.verilog" enable="1"/>
+        <File path="src/VM2413/sinetable.sv" type="file.verilog" enable="1"/>
+        <File path="src/VM2413/slotcounter.sv" type="file.verilog" enable="1"/>
+        <File path="src/VM2413/temporalmixer.sv" type="file.verilog" enable="1"/>
+        <File path="src/VM2413/vm2413.sv" type="file.verilog" enable="1"/>
+        <File path="src/VM2413/voicememory.sv" type="file.verilog" enable="1"/>
+        <File path="src/VM2413/voicerom.sv" type="file.verilog" enable="1"/>
+        <File path="src/audiomix.v" type="file.verilog" enable="1"/>
+        <File path="src/cheatcodes.sv" type="file.verilog" enable="1"/>
+        <File path="src/compressor.sv" type="file.verilog" enable="1"/>
+        <File path="src/dpram.v" type="file.verilog" enable="1"/>
+        <File path="src/hdmi2/audio_clock_regeneration_packet.sv" type="file.verilog" enable="1"/>
+        <File path="src/hdmi2/audio_info_frame.sv" type="file.verilog" enable="1"/>
+        <File path="src/hdmi2/audio_sample_packet.sv" type="file.verilog" enable="1"/>
+        <File path="src/hdmi2/auxiliary_video_information_info_frame.sv" type="file.verilog" enable="1"/>
+        <File path="src/hdmi2/hdmi.sv" type="file.verilog" enable="1"/>
+        <File path="src/hdmi2/packet_assembler.sv" type="file.verilog" enable="1"/>
+        <File path="src/hdmi2/packet_picker.sv" type="file.verilog" enable="1"/>
+        <File path="src/hdmi2/serializer.sv" type="file.verilog" enable="1"/>
+        <File path="src/hdmi2/source_product_description_info_frame.sv" type="file.verilog" enable="1"/>
+        <File path="src/hdmi2/tmds_channel.sv" type="file.verilog" enable="1"/>
+        <File path="src/hybrid_pwm_sd.v" type="file.verilog" enable="1"/>
+        <File path="src/io.v" type="file.verilog" enable="1"/>
+        <File path="src/iosys/controller_ds2.sv" type="file.verilog" enable="1"/>
+        <File path="src/iosys/dualshock_controller.v" type="file.verilog" enable="1"/>
+        <File path="src/iosys/gowin_dpb_menu.v" type="file.verilog" enable="1"/>
+        <File path="src/iosys/iosys_bl616.v" type="file.verilog" enable="1"/>
+        <File path="src/iosys/textdisp.v" type="file.verilog" enable="1"/>
+        <File path="src/iosys/uart_fixed.v" type="file.verilog" enable="1"/>
+        <File path="src/jt89/jt89.v" type="file.verilog" enable="1"/>
+        <File path="src/jt89/jt89_mixer.v" type="file.verilog" enable="1"/>
+        <File path="src/jt89/jt89_noise.v" type="file.verilog" enable="1"/>
+        <File path="src/jt89/jt89_tone.v" type="file.verilog" enable="1"/>
+        <File path="src/jt89/jt89_vol.v" type="file.verilog" enable="1"/>
+        <File path="src/lightgun.sv" type="file.verilog" enable="1"/>
+        <File path="src/parts.v" type="file.verilog" enable="1"/>
+        <File path="src/pll/pll_12.v" type="file.verilog" enable="1"/>
+        <File path="src/pll/pll_27.v" type="file.verilog" enable="1"/>
+        <File path="src/pll/pll_53.v" type="file.verilog" enable="1"/>
+        <File path="src/pll/pll_74.v" type="file.verilog" enable="1"/>
+        <File path="src/sdram.v" type="file.verilog" enable="1"/>
+        <File path="src/sms2hdmi.sv" type="file.verilog" enable="1"/>
+        <File path="src/smstang_top.sv" type="file.verilog" enable="1"/>
+        <File path="src/spram.v" type="file.verilog" enable="1"/>
+        <File path="src/sprom.v" type="file.verilog" enable="1"/>
+        <File path="src/system.v" type="file.verilog" enable="1"/>
+        <File path="src/t80/t80.v" type="file.verilog" enable="1"/>
+        <File path="src/t80/t80_alu.v" type="file.verilog" enable="1"/>
+        <File path="src/t80/t80_mcode.v" type="file.verilog" enable="1"/>
+        <File path="src/t80/t80_reg.v" type="file.verilog" enable="1"/>
+        <File path="src/t80/t80pa.v" type="file.verilog" enable="1"/>
+        <File path="src/t80/t80s.v" type="file.verilog" enable="1"/>
+        <File path="src/usb_hid_host.v" type="file.verilog" enable="1"/>
+        <File path="src/vdp.v" type="file.verilog" enable="1"/>
+        <File path="src/vdp_background.v" type="file.verilog" enable="1"/>
+        <File path="src/vdp_cram.v" type="file.verilog" enable="1"/>
+        <File path="src/vdp_main.v" type="file.verilog" enable="1"/>
+        <File path="src/vdp_sprite_shifter.v" type="file.verilog" enable="1"/>
+        <File path="src/vdp_sprites.v" type="file.verilog" enable="1"/>
+        <File path="src/video.v" type="file.verilog" enable="1"/>
+        <File path="src/boards/console60k.cst" type="file.cst" enable="1"/>
+        <File path="src/cpu.rao" type="file.gao" enable="0"/>
+        <File path="src/hdmi.rao" type="file.gao" enable="0"/>
+    </FileList>
+</Project>

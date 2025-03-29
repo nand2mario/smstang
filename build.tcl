@@ -9,13 +9,18 @@ set dev [lindex $argv 0]
 
 if {$dev eq "console60k"} {
     set_device GW5AT-LV60PG484AC1/I0 -device_version B
-    add_file -type cst "src/boards/console60k.cst"
-# } elseif {$dev eq "console138k"} {
-#     set_device GW5AT-LV138PG484AC1/I0 -device_version B
-#     add_file -type cst "src/m138k/m138k.cst"
-#     add_file -type verilog "src/m138k/pll.v"
-#     add_file -type verilog "src/m138k/pll_27.v"
-#     add_file -type verilog "src/m138k/pll_74.v"
+    add_file -type cst "src/boards/console.cst"
+    add_file -type verilog "src/plla/pll_12.v"
+    add_file -type verilog "src/plla/pll_27.v"
+    add_file -type verilog "src/plla/pll_53.v"
+    add_file -type verilog "src/plla/pll_74.v"
+} elseif {$dev eq "console138k"} {
+    set_device GW5AT-LV138PG484AC1/I0 -device_version B
+    add_file -type cst "src/boards/console.cst"
+    add_file -type verilog "src/pll/pll_12.v"
+    add_file -type verilog "src/pll/pll_27.v"
+    add_file -type verilog "src/pll/pll_53.v"
+    add_file -type verilog "src/pll/pll_74.v"
 } else {
     error "Unknown device $dev"
 }
@@ -71,10 +76,6 @@ add_file -type verilog "src/jt89/jt89_tone.v"
 add_file -type verilog "src/jt89/jt89_vol.v"
 add_file -type verilog "src/lightgun.sv"
 add_file -type verilog "src/parts.v"
-add_file -type verilog "src/pll/pll_12.v"
-add_file -type verilog "src/pll/pll_27.v"
-add_file -type verilog "src/pll/pll_53.v"
-add_file -type verilog "src/pll/pll_74.v"
 add_file -type verilog "src/sdram.v"
 add_file -type verilog "src/sms2hdmi.sv"
 add_file -type verilog "src/smstang_top.sv"
