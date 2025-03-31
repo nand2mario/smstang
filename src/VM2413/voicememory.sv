@@ -47,12 +47,12 @@ module VoiceMemory(clk, reset, idata, wr, rwaddr, roaddr, odata, rodata);
    
    VOICE_ID_TYPE  rom_addr;
    VOICE_TYPE     rom_data;
-   logic [1:0]    rstate;
+   logic [1:0]    rstate;    // 0 to 2
    
    VoiceRom ROM2413(clk, rom_addr, rom_data);
    
    always @(posedge clk or posedge reset) begin
-      reg [5:0] init_id;
+      reg [5:0] init_id;    // 0 to 38
       
       if (reset) begin
          init_id = 0;

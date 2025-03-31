@@ -54,18 +54,15 @@ module EnvelopeGenerator(clk, reset, clkena, slot, stage, rhythm, am, tl, ar, dr
    
    output reg [12:0] egout;		//Decimal part 6bit
    
-   
-   
-   reg [4:0]     rslot;
-   EGDATA_TYPE memin;
-   EGDATA_TYPE memout;
-   reg           memwr;
+   SLOT_TYPE     rslot;
+   EGDATA_TYPE   memin;
+   EGDATA_TYPE   memout;
+   logic         memwr;
    
    reg [21:0]    aridx;
    wire [12:0]   ardata;		//Decimal part 6bit
    
    //  Attack table
-   
    AttackTable u_attack_table(
       .clk(clk), 
       .clkena(clkena),
@@ -98,9 +95,9 @@ module EnvelopeGenerator(clk, reset, clkena, slot, stage, rhythm, am, tl, ar, dr
       reg [4:0]     rm;
       reg [6+8:0]   egtmp;		//Decimal part 6bit
       reg [19:0]    amphase;
-      reg [22:0]    egphase;
-      reg [1:0]     egstate;
-      reg [22:0]    dphase;
+      EGPHASE_TYPE  egphase;
+      EGSTATE_TYPE  egstate;
+      EGPHASE_TYPE  dphase;
       reg [17:0]    ntable;
 
       if (reset) begin

@@ -99,7 +99,7 @@ module controller(clk, reset, clkena, slot, stage, wr, addr, data, am, pm, wf, m
    // // slot_out : out slot_id
    
    // the array which caches instrument number of each channel.
-   reg [3:0]       inst_cache[0:9-1];
+   reg [3:0]       inst_cache[0:8];
    
    parameter [5:0] kl_table[0:15] = 
       {6'b000000, 6'b011000, 6'b100000, 6'b100101, 
@@ -108,12 +108,12 @@ module controller(clk, reset, clkena, slot, stage, wr, addr, data, am, pm, wf, m
        6'b110101, 6'b110110, 6'b110111, 6'b111000};      // 0.75db/step, 6db/oct
    
    // signals for the read-only access ports of voicememory module.
-   reg [5:0]       slot_voice_addr;
+   VOICE_ID_TYPE   slot_voice_addr;
    VOICE_TYPE      slot_voice_data;
    
    // signals for the read-write access ports of voicememory module.
    reg             user_voice_wr;
-   reg [5:0]       user_voice_addr;
+   VOICE_ID_TYPE   user_voice_addr;
    VOICE_TYPE      user_voice_rdata;
    VOICE_TYPE      user_voice_wdata;
    
@@ -150,7 +150,7 @@ module controller(clk, reset, clkena, slot, stage, wr, addr, data, am, pm, wf, m
          end 
       end 
    
-   //Address latch to read tone data for current slot (1st stage)
+   // Address latch to read tone data for current slot (1st stage)
    always @(posedge reset or posedge clk)
       if (reset)
          slot_voice_addr <= 0;
@@ -179,11 +179,11 @@ module controller(clk, reset, clkena, slot, stage, wr, addr, data, am, pm, wf, m
       reg [23:0]      regs_tmp;
       VOICE_TYPE      user_voice_tmp;
       
-      reg [2:0]       fb_buf;
-      reg             wf_buf;
+      FB_TYPE         fb_buf;
+      WF_TYPE         wf_buf;
       
       reg             extra_mode;
-      reg [5:0]       vindex;
+      VOICE_ID_TYPE   vindex;
       
       // process
       

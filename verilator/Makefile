@@ -38,6 +38,9 @@ verilate: ./obj_dir/V$N.cpp
 	@echo "### BUILDING SIM ###"
 	make -C obj_dir -f V$N.mk V$N
 	cp -a $D/mboot.hex .
+	ln -sf obj_dir/V$N smstang
+	@echo
+	@echo "Use ./smstang to run the simulation"
 
 sim: ./obj_dir/V$N
 	@echo
@@ -53,7 +56,7 @@ gtkwave:
 	gtkwave obj_dir/waveform.fst
 
 audio:
-	ffmpeg -y -f s16le -ar 48k -ac 2 -i md.aud md.wav
+	ffmpeg -y -f s16le -ar 48k -ac 2 -i sms.aud sms.wav
 
 clean:
 	rm -rf obj_dir

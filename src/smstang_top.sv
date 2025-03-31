@@ -46,6 +46,16 @@ module smstang_top(
     output       tmds_clk_p,
     output [2:0] tmds_d_n,
     output [2:0] tmds_d_p
+
+
+`ifdef VERILATOR
+	,
+    input  [11:0] joy1,
+    input  [11:0] joy2,
+	input         rom_loading,
+	input  [7:0]  rom_do,
+	input         rom_do_valid
+`endif
 );
 
 // System output
@@ -147,8 +157,10 @@ wire      joya_th;
 wire      joyb_th;
 wire      swap = status[1];
 
+`ifndef VERILATOR
 wire [11:0] joy1;   // SNES layout: (R L  X A RT LT DN UP START SELECT Y B)
 wire [11:0] joy2;   //              11 10 9 8 7  6  5  4  3     2      1 0
+`endif
 wire [7:0] joyser; 
 
 wire [21:0] ram_addr;
@@ -247,9 +259,11 @@ video video
 
 ////////////////// Memories //////////////////
 
+`ifndef VERILATOR
 wire rom_loading;
 wire rom_do_valid;
 wire [7:0] rom_do;
+`endif
 
 reg [23:0] loading_addr_next, loading_addr;
 reg loading_req;
@@ -317,6 +331,8 @@ dpram #(.widthad_a(15)) nvram_inst
 
 ////////////////// I/O //////////////////
 
+`ifndef VERILATOR
+
 wire overlay;
 wire [7:0] overlay_x;
 wire [7:0] overlay_y;
@@ -363,7 +379,6 @@ usb_hid_host usb_hid_host2 (
 
 assign led = ~{joy1[4:0], usb_type, usb_conerr};
 
-`ifndef VERILATOR
 iosys_bl616 #(.COLOR_LOGO(15'b11111_00000_00000), .FREQ(53_700_000), .CORE_ID(5) )     // deep blue smstang logo
     sys_inst (
     .clk(clk_sys), .hclk(clk_pixel), .resetn(1'b1),
@@ -378,14 +393,16 @@ iosys_bl616 #(.COLOR_LOGO(15'b11111_00000_00000), .FREQ(53_700_000), .CORE_ID(5)
 
 `else
 
-test_loader test_loader_inst(
-    .clk(clk_sys),
-    .resetn(locked),
-    .dout(rom_do),
-    .dout_valid(rom_do_valid),
-    .loading(rom_loading),
-    .fail()
-);
+// rom loading is done by sim_main.cpp
+
+// test_loader test_loader_inst(
+//     .clk(clk_sys),
+//     .resetn(locked),
+//     .dout(rom_do),
+//     .dout_valid(rom_do_valid),
+//     .loading(rom_loading),
+//     .fail()
+// );
 `endif
 
 reg rom_loading_r;

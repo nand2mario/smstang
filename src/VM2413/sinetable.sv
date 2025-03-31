@@ -36,26 +36,24 @@
 // ----------------------------------------------------------------------------
 
 module interpolate_mul(i0, i1, o);
-   input [8:0]   i0;		//Unsigned 9bit (0bit integer, 9bit decimal)
-   input [11:0]  i1;		//Signed 12bit (8bit integer part, 4bit decimal part)
-   output [13:0] o;		//Signed 7bit (8bit integer part, 6bit decimal part)
+   input  [8:0]  i0;		   // Unsigned 9bit (0bit integer, 9bit decimal)
+   input  [11:0] i1;		   // Signed 12bit (8bit integer part, 4bit decimal part)
+   output [13:0] o;		   // Signed 7bit (8bit integer part, 6bit decimal part)
    
-   wire [21:0]   w_mul;		//Signed 22bit (integer part 9bit, decimal part 13bit)
+   wire   [21:0] w_mul;		// Signed 22bit (integer part 9bit, decimal part 13bit)
    
    assign w_mul = {1'b0, i0} * i1;
-   assign o = w_mul[20:7];		//21bit with MSB cut, 7bit cut with decimal part lower
+   assign o = w_mul[20:7]; // 21bit with MSB cut, 7bit cut with decimal part lower
    
 endmodule
 
 // ----------------------------------------------------------------------------
-//  conv_integer()
-
 module SineTable(clk, clkena, wf, addr, data);
    input            clk;
    input            clkena;
    input            wf;
-   input [17:0]     addr;		//integer part 9bit, decimal part 9bit
-   output [13:0]    data;		//Integer part 8bit, decimal part 6bit
+   input [17:0]     addr;		// Integer part 9bit, decimal part 9bit
+   output [13:0]    data;		// Integer part 8bit, decimal part 6bit
    
    
    //integer part 7bit, decimal part 4bit
@@ -111,10 +109,10 @@ module SineTable(clk, clkena, wf, addr, data);
    assign w_xor = {7{addr[16]}};
    assign w_xaddr = addr[15:9] ^ w_xor;
    assign w_addr0 = w_xaddr;
-   assign w_addr1 = addr[15:9] == 7'b1111111 ? 7'b1111111 ^ w_xor : 		//Handling the parts where the waveform is circulating
+   assign w_addr1 = addr[15:9] == 7'b1111111 ? 7'b1111111 ^ w_xor : 		// Handling the parts where the waveform is circulating
                    (addr[15:9] + 1) ^ w_xor;
    
-   //Waveform memory
+   // Waveform memory
    always @(posedge clk)
        begin
          if (clkena) begin
@@ -123,8 +121,7 @@ module SineTable(clk, clkena, wf, addr, data);
          end 
       end 
    
-   //Delay in modifier information (matches the read delay of the waveform memory)
-   
+   // Delay in modifier information (matches the read delay of the waveform memory)
    always @(posedge clk)
        begin
          if (clkena) begin
@@ -139,9 +136,9 @@ module SineTable(clk, clkena, wf, addr, data);
    assign w_sub = ({1'b0, ff_data1}) - ({1'b0, ff_data0});
    
    interpolate_mul u_interpolate_mul(
-      .i0(ff_weight),   //Unsigned 9bit (0bit integer, 9bit decimal)
-      .i1(w_sub),       //Signed 8bit (Integer part 8bit)
-      .o(w_mul));        //Unsigned 7bit (Integer part 8bit)
+      .i0(ff_weight),    // Unsigned 9bit (0bit integer, 9bit decimal)
+      .i1(w_sub),        // Signed 8bit (Integer part 8bit)
+      .o(w_mul));        // Unsigned 7bit (Integer part 8bit)
    
    // Leave the lower 6 bits (decimal part) to maintain computational accuracy
    assign w_inter = {ff_data0, 2'b00} + w_mul;		//"00" matches the digits

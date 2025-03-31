@@ -45,13 +45,12 @@ module OutputGenerator(clk, reset, clkena, slot, stage, rhythm, opout, faddr, fd
    input SLOT_TYPE maddr;
    output SIGNED_LI_TYPE mdata;
    
-   function [8:0] AVERAGE;
+   function SIGNED_LI_TYPE AVERAGE;
       input SIGNED_LI_TYPE L;
       input SIGNED_LI_TYPE R;
       reg [8+2:0]  vL;
       reg [8+2:0]  vR;
    begin
-      
       // Sign + Absolute Value -> Two's Complement
       if (L.sign == 1'b0)
          vL = {2'b00, L.value};
@@ -65,23 +64,21 @@ module OutputGenerator(clk, reset, clkena, slot, stage, rhythm, opout, faddr, fd
       vL = vL + vR;
       
       // Two's complement -> sign + absolute value, and then 1/2 times. One bit is gone here.
-      if (vL[10] == 1'b0)		// positive
-         AVERAGE = {1'b0, vL[10 - 1:1]};
-      else begin              // negative
+      if (vL[10] == 1'b0) begin		// positive
+         AVERAGE.sign = 1'b0;
+         AVERAGE.value = vL[10 - 1:1];
+      end else begin              // negative
          vL = ~(vL - 1'b1);
-         AVERAGE = {1'b1, vL[10 - 1:1]};
+         AVERAGE.sign = 1'b1;
+         AVERAGE.value = vL[10 - 1:1];
       end
    end
    endfunction
    
-   reg            fb_wr;
-   reg            mo_wr;
+   logic          fb_wr, mo_wr;
    CH_TYPE        fb_addr;
    SLOT_TYPE      mo_addr;
-   SIGNED_LI_TYPE li_data;
-   SIGNED_LI_TYPE fb_wdata;
-   SIGNED_LI_TYPE mo_wdata;
-   SIGNED_LI_TYPE mo_rdata;
+   SIGNED_LI_TYPE li_data, fb_wdata, mo_wdata, mo_rdata;
    
    FeedbackMemory Fmem(
       .clk(clk), 

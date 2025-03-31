@@ -47,7 +47,7 @@ void usage()
 	printf("  -t     start tracing once sms is on (to waveform.fst)\n");
 	printf("  -tt T  start tracing from time T\n");
 	printf("  -tf F  start tracing from frame F\n");
-	printf("  -tl    start tracing from game loading (i.e. before md is turned on)\n");
+	printf("  -tl    start tracing from game loading (i.e. before core is turned on)\n");
 	printf("  -s T   stop simulation at time T\n");
 	printf("  -f     print flash related memory accesses\n");
 }
@@ -72,6 +72,56 @@ vector<string> tokenize(string s);
 long long parse_num(string s);
 void trace_on();
 void trace_off();
+
+static void loading_step()
+{
+	if (top->clk_g) {
+		top->clk_g = 0;
+		top->eval(); sim_time++;
+	}
+	top->clk_g = 1;
+	top->eval(); sim_time++;
+}
+
+void load_rom(char *filename)
+{
+	FILE *f = fopen(filename, "rb");
+	if (!f) {
+		printf("Cannot open file %s\n", filename);
+		exit(1);
+	}
+	fseek(f, 0, SEEK_END);
+	long size = ftell(f);
+	fseek(f, 0, SEEK_SET); // return to start of file
+	uint8_t *rom = (uint8_t *)malloc(size);
+	size_t r = fread(rom, 1, size, f);
+	if (r != size)
+	{
+		printf("Cannot read file %s (%ld / %ld)\n", filename, r, size);
+		exit(1);
+	}
+	fclose(f);
+
+	// send the bytes
+	top->rom_loading = 1;
+	loading_step();
+
+	for (int i = 0; i < size; i++) {
+		top->rom_do = rom[i];
+		top->rom_do_valid = 1;
+		loading_step();
+		top->rom_do_valid = 0;
+		for (int i = 0; i < 16; i++)
+			loading_step();
+	}
+	top->rom_loading = 0;
+	loading_step();
+
+	printf("Finished loading rom\n");
+
+	// free rom buffer
+	free(rom);	
+}
 
 int main(int argc, char **argv, char **env)
 {
@@ -128,18 +178,18 @@ int main(int argc, char **argv, char **env)
 		else
 		{
 			// load ROM
-			// load_rom(argv[i]);
+			load_rom(argv[i]);
 			loaded = true;
 
 			if (!trace_loading)
 				sim_time = 0;		// return sim_time to 0 when we are not tracing loading
 		}
 	}
-	// if (!loaded)
-	// {
-	// 	usage();
-	// 	exit(1);
-	// }
+	if (!loaded)
+	{
+		usage();
+		exit(1);
+	}
 
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
@@ -324,9 +374,9 @@ int main(int argc, char **argv, char **env)
 					case SDLK_DOWN:		bit = 5; break;
 					case SDLK_LEFT:		bit = 6; break;
 					case SDLK_RIGHT:	bit = 7; break;
-					case SDLK_a:		bit = 1; break; // Y  (mapped to MD A)
-					case SDLK_s:		bit = 0; break;	// B  (mapped to MD B)
-					case SDLK_d:		bit = 8; break;	// A  (mapped to MD C)
+					case SDLK_a:		bit = 1; break; // Y 
+					case SDLK_s:		bit = 0; break;	// B 
+					case SDLK_d:		bit = 8; break;	// A 
 					case SDLK_w:		bit = 3; break; // X
 					case SDLK_z:		bit = 10; break; // L
 					case SDLK_x:		bit = 11; break; // R
@@ -334,10 +384,10 @@ int main(int argc, char **argv, char **env)
 					default: 			bit = -1; break;
 					} 
 					if (bit >= 0) {
-						// if (e.type == SDL_KEYDOWN) 
-						// 	top->joy_btns |= 1 << bit;
-						// else
-						// 	top->joy_btns &= ~(1 << bit);
+						if (e.type == SDL_KEYDOWN) 
+							top->joy1 |= 1 << bit;
+						else
+							top->joy1 &= ~(1 << bit);
 					}
 
 					break;
@@ -353,7 +403,7 @@ int main(int argc, char **argv, char **env)
 	}
 
 	fclose(f);
-	printf("Audio output to md.aud done.\n");
+	printf("Audio output to sms.aud done.\n");
 
 	if (m_trace)
 		m_trace->close();

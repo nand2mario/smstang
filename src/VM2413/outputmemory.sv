@@ -50,8 +50,7 @@ module OutputMemory(clk, reset, wr, addr, wdata, rdata, addr2, rdata2);
       else begin
          
          if (init_ch != 18) begin
-            data_array[init_ch].sign <= 0;
-            data_array[init_ch].value <= 0;
+            data_array[init_ch] <= '0;
             init_ch <= init_ch + 1;
          
          end else if (wr)

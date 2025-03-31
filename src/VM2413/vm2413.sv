@@ -36,8 +36,8 @@
 package vm2413;
 
 typedef logic [3:0] CH_TYPE;
-typedef logic [2:0] SLOT_TYPE;
-typedef logic [0:0] STAGE_TYPE;
+typedef logic [4:0] SLOT_TYPE;
+typedef logic [1:0] STAGE_TYPE;
 
 typedef logic [23:0] REGS_VECTOR_TYPE;
 
@@ -53,19 +53,7 @@ typedef struct packed {
 typedef logic [5:0] VOICE_ID_TYPE;     // range 0-37
 typedef logic [35:0] VOICE_VECTOR_TYPE;
 
-typedef logic AM_TYPE;
-typedef logic PM_TYPE;
-typedef logic EG_TYPE;
-typedef logic KR_TYPE;
-typedef logic [3:0] ML_TYPE;
-typedef logic [1:0] KL_TYPE;
-typedef logic WF_TYPE;
-typedef logic [2:0] FB_TYPE;
-typedef logic [3:0] AR_TYPE;
-typedef logic [3:0] DR_TYPE;
-typedef logic [3:0] SL_TYPE;
-typedef logic [3:0] RR_TYPE;
-
+// 36 bits
 typedef struct packed {
    logic am;         // AM switch - '0':off  '1':3.70Hz
    logic pm;         // PM switch - '0':stop '1':6.06Hz
@@ -81,6 +69,19 @@ typedef struct packed {
    logic [3:0] sl;   // Sustine Level
    logic [3:0] rr;   // Release Rate
 } VOICE_TYPE;
+
+typedef logic AM_TYPE;
+typedef logic PM_TYPE;
+typedef logic EG_TYPE;
+typedef logic KR_TYPE;
+typedef logic [3:0] ML_TYPE;
+typedef logic [1:0] KL_TYPE;
+typedef logic WF_TYPE;
+typedef logic [2:0] FB_TYPE;
+typedef logic [3:0] AR_TYPE;
+typedef logic [3:0] DR_TYPE;
+typedef logic [3:0] SL_TYPE;
+typedef logic [3:0] RR_TYPE;
 
 typedef logic [2:0] BLK_TYPE;      // Block
 typedef logic [8:0] FNUM_TYPE;     // F-Number

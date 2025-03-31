@@ -78,7 +78,7 @@ module TemporalMixer(clk, reset, clkena, slot, stage, rhythm, maddr, mdata, mixo
                      5'b01111 : begin mute <= 1'b1; end
                      5'b10000 : begin mute <= 1'b1; end
                      5'b10001 : begin mute <= 1'b1; end
-                     default : begin mute <= 1'b1; end
+                     default  : begin mute <= 1'b1; end
                   endcase
                else
                   case (slot)
@@ -100,22 +100,24 @@ module TemporalMixer(clk, reset, clkena, slot, stage, rhythm, maddr, mdata, mixo
                      5'b01111 : begin maddr <= 5'b10000; mute <= 1'b0; end		// TOM
                      5'b10000 : begin maddr <= 5'b01101; mute <= 1'b0; end		// BD
                      5'b10001 : begin mute <= 1'b1; end
-                     default : begin mute <= 1'b1; end
+                     default  : begin mute <= 1'b1; end
                   endcase
             end else
   
-               if (stage == 2) begin
-                  if (slot == 5'b10001) begin
-                     mixout <= mix;
-                     mix <= {14{1'b0}};
-                  end else
-                     if (mute == 1'b0) begin
-                        if (mdata.sign == 1'b0)
-                           mix <= mix + mdata.value;
-                        else
-                           mix <= mix - mdata.value;
-                     end 
-               end 
+            if (stage == 2) begin
+               if (slot == 5'b10001) begin
+                  mixout <= mix;
+                  mix <= {14{1'b0}};
+               end else
+                  if (mute == 1'b0) begin
+                     // if (mdata.value)
+                     //    $display("mdata.value: %d", mdata.value);
+                     if (mdata.sign == 1'b0)
+                        mix <= mix + mdata.value;
+                     else
+                        mix <= mix - mdata.value;
+                  end 
+            end 
          end 
       end 
    

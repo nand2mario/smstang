@@ -48,7 +48,7 @@ module PhaseMemory(clk, reset, slot, memwr, memout, memin);
       else  begin
          
          if (init_slot != 18) begin
-            phase_array[init_slot] <= 0;
+            phase_array[init_slot] <= '0;
             init_slot = init_slot + 1;
          
          end else if (memwr)

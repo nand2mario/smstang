@@ -39,9 +39,9 @@ module FeedbackMemory(clk, reset, wr, waddr, wdata, raddr, rdata);
    input                clk;
    input                reset;
    input                wr;
-   input      [3:0]     waddr;
+   input CH_TYPE        waddr;
    input SIGNED_LI_TYPE wdata;      // signed LI_TYPE
-   input      [3:0]     raddr;
+   input CH_TYPE        raddr;
    output SIGNED_LI_TYPE rdata;
    
    SIGNED_LI_TYPE data_array[0:9-1];

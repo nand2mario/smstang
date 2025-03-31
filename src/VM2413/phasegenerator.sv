@@ -51,21 +51,20 @@ module PhaseGenerator(clk, reset, clkena, slot, stage, rhythm, pm, ml, blk, fnum
    output reg       noise;
    output reg [17:0]    pgout;
    
-   parameter [4:0]  mltbl[0:15] = 
+   localparam [4:0]  mltbl[0:15] = 
       {5'b00001, 5'b00010, 5'b00100, 5'b00110, 5'b01000, 5'b01010, 5'b01100, 5'b01110, 
        5'b10000, 5'b10010, 5'b10100, 5'b10100, 5'b11000, 5'b11000, 5'b11110, 5'b11110};
    
-   parameter [63:0] noise14_tbl = 
+   localparam [63:0] noise14_tbl = 
       64'b1000100010001000100010001000100100010001000100010001000100010000;
-   parameter [7:0]  noise17_tbl = 8'b00001010;
+   localparam [7:0]  noise17_tbl = 8'b00001010;
    
    // Signals connected to the phase memory.
-   reg              memwr;
-   PHASE_TYPE       memout;
-   PHASE_TYPE       memin;
+   logic          memwr;
+   PHASE_TYPE     memout, memin;
    
    // Counter for pitch modulation;
-   reg [12:0]       pmcount;
+   logic [12:0]   pmcount;
    
    
    always @(posedge clk or posedge reset) begin
@@ -136,6 +135,13 @@ module PhaseGenerator(clk, reset, clkena, slot, stage, rhythm, pm, ml, blk, fnum
       end 
    end
    
-   PhaseMemory MEM(clk, reset, slot, memwr, memout, memin);
+   PhaseMemory MEM(
+      .clk(clk),
+      .reset(reset),
+      .slot(slot),
+      .memwr(memwr),
+      .memout(memout),
+      .memin(memin)
+   );
    
 endmodule

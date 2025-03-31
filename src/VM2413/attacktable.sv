@@ -56,8 +56,6 @@ module AttackTable(clk, clkena, addr, data);
    input [21:0]      addr;		//Decimal part 15bit
    output reg [12:0] data;		//Decimal part 6bit
    
-   attack_table_mul u_attack_table_mul(.i0(ff_w), .i1(w_sub), .o(w_mul));
-   
    parameter [6:0] ar_adjust[0:127] = 
      {7'b0000000, 7'b0000000, 7'b0000000, 7'b0000000, 7'b0000000, 7'b0000001, 7'b0000001, 7'b0000001, 
       7'b0000001, 7'b0000001, 7'b0000010, 7'b0000010, 7'b0000010, 7'b0000010, 7'b0000011, 7'b0000011, 
@@ -106,8 +104,12 @@ module AttackTable(clk, clkena, addr, data);
    
    // Interpolation (*It will be 0 at places that span the code, so ff_sign is not a concern)
    // o = i1 *(1 -k) + i2 *w = i1 -w *i1 + w *i2 = i1 + w *(i2 -i1)
-   
    assign w_sub = {1'b0, ff_d2} - {1'b0, ff_d1};
+
+   attack_table_mul u_attack_table_mul(
+      .i0(ff_w), 
+      .i1(w_sub), 
+      .o(w_mul));
 
    assign w_inter = {1'b0, ff_d1, 6'b0} + w_mul;
    

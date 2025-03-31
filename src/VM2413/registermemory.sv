@@ -45,14 +45,14 @@ module RegisterMemory(clk, reset, addr, wr, idata, odata);
    reg [23:0]    regs_array[0:8];
    
    always @(posedge reset or posedge clk) begin
-      reg [3:0]     init_state;
+      reg [3:0]     init_state;    // 0 to 9
       
       if (reset)
          init_state = 0;
       else begin
          if (init_state != 9) begin
             // Initialize the RAM contents immediately after starting
-            regs_array[init_state] <= 0;
+            regs_array[init_state] <= '0;
             init_state = init_state + 1;
          end else if (wr)
             // Write cycle

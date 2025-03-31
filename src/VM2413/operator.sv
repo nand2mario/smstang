@@ -74,17 +74,16 @@ module Operator(clk, reset, clkena, slot, stage, rhythm, wf, fb, noise, pgout, e
       .clk(clk), 
       .clkena(clkena), 
       .wf(wf), 
-      .addr(addr),     //integer part 9bit, decimal part 9bit
-      .data(data));    //Integer part 8bit, decimal part 6bit
+      .addr(addr),     // Integer part 9bit, decimal part 9bit
+      .data(data));    // Integer part 8bit, decimal part 6bit
    
    assign w_is_carrier = slot[0];
-   assign w_modula_m = (fb == 3'b000) ? {12{1'b0}} : 
-                       {1'b0, fdata.value, 1'b0, 9'b000000000} >> (3'b111 ^ fb);
-   assign w_modula_c = {fdata.value, 2'b00, 9'b000000000};
-   assign w_modula = ((w_is_carrier)) ? w_modula_c : w_modula_m;
+   assign w_modula_m   = fb == 3'b0 ? 20'b0 : {1'b0, fdata.value, 1'b0, 9'b0} >> (3'b111 ^ fb);
+   assign w_modula_c   = {fdata.value, 2'b0, 9'b0};
+   assign w_modula     = w_is_carrier ? w_modula_c : w_modula_m;
    
    always @(posedge reset or posedge clk) begin
-      reg [13:0]     opout_buf;		//Integer part 8bit, decimal part 6bit
+      reg [13:0]     opout_buf;		// Integer part 8bit, decimal part 6bit
 
       if (reset) begin
          opout <= {14{1'b0}};
@@ -94,9 +93,9 @@ module Operator(clk, reset, clkena, slot, stage, rhythm, wf, fb, noise, pgout, e
             if (stage == 2'b00) begin
                // Stage that determines the reference address (phase) of the sine wave
                if (rhythm & (slot == 14 | slot == 17))		// HH or CYM
-                  addr <= {~noise, 8'b01111111, 9'b000000000};
+                  addr <= {~noise, 8'b01111111, 9'b0};
                else if (rhythm & slot == 15)		// SD
-                  addr <= {~pgout[17], 8'b01111111, 9'b000000000};
+                  addr <= {~pgout[17], 8'b01111111, 9'b0};
                else if (rhythm & slot == 16)		// TOM
                   addr <= pgout;
                else

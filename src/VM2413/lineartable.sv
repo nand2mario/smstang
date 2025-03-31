@@ -100,17 +100,15 @@ module LinearTable(clk, reset, addr, data);
    wire [9:0]      w_mul;
    wire [9:0]      w_inter;
 
-   assign w_addr1 = ((addr[12:6] != 7'b1111111)) ? (addr[12:6] + 1) : 
-                    7'b1111111;
+   assign w_addr1 = ((addr[12:6] != 7'b1111111)) ? (addr[12:6] + 1) : 7'b1111111;
    
    always @(posedge clk)
-       begin
+      begin
          //The corresponding value appears on the next addressed cycle (1cycle delay)
          ff_data0 <= log2lin_data[(addr[12:6])];
          ff_data1 <= log2lin_data[w_addr1];
-      end 
-   
-   
+      end
+      
    always @(posedge clk)
        begin
          ff_sign <= addr[13];

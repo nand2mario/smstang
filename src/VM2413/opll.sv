@@ -38,9 +38,9 @@ module opll(xin, xout, xena, d, a, cs_n, we_n, ic_n, mixout);
    output        xout;
    input         xena;
    input [7:0]   d;
-   input         a;
-   input         cs_n;
+   input         cs_n;     // {cs_n,we_n,a0} is command: 000=reg addr, 001=reg data, 011=hi-z
    input         we_n;
+   input         a;
    input         ic_n;
    output [13:0] mixout;
    
@@ -137,7 +137,7 @@ module opll(xin, xout, xena, d, a, cs_n, we_n, ic_n, mixout);
       .stage(stage8));
    
    // no delay
-   controller ct(
+   controller controller(
       .clk(xin), .reset(reset), .clkena(xena), 
       .slot(slot), .stage(stage), .wr(opllwr), .addr(opllptr), 
       .data(oplldat), .am(am), .pm(pm), .wf(wf), .ml(ml), .tl(tl), 
@@ -145,30 +145,35 @@ module opll(xin, xout, xena, d, a, cs_n, we_n, ic_n, mixout);
       .fnum(fnum), .rks(rks), .key(key), .rhythm(rhythm));
    
    // 2 stages delay
-   EnvelopeGenerator eg(.clk(xin), .reset(reset), .clkena(xena), 
+   EnvelopeGenerator envelopegen(.clk(xin), .reset(reset), .clkena(xena), 
       .slot(slot2), .stage(stage2), .rhythm(rhythm), 
       .am(am), .tl(tl), .ar(ar), .dr(dr), .sl(sl), .rr(rr), 
       .rks(rks), .key(key), .egout(egout));
    
-   PhaseGenerator pg(
-      xin, reset, xena, 
-      slot2, stage2, rhythm, pm, ml, blk, fnum, key, noise, pgout);
+   PhaseGenerator phasegen(
+      .clk(xin), .reset(reset), .clkena(xena), 
+      .slot(slot2), .stage(stage2), .rhythm(rhythm), 
+      .pm(pm), .ml(ml), .blk(blk), .fnum(fnum), .key(key), 
+      .noise(noise), .pgout(pgout));
    
    // 5 stages delay
-   Operator op(
+   Operator operator(
       .clk(xin), .reset(reset), .clkena(xena), 
       .slot(slot5), .stage(stage5), .rhythm(rhythm), 
       .wf(wf), .fb(fb), .noise(noise), .pgout(pgout), .egout(egout), 
       .faddr(faddr), .fdata(fdata), .opout(opout));
    
    // 8 stages delay
-   OutputGenerator og(
-      xin, reset, xena, 
-      slot8, stage8, rhythm, opout, faddr, fdata, maddr, mdata);
+   OutputGenerator outputgen(
+      .clk(xin), .reset(reset), .clkena(xena), 
+      .slot(slot8), .stage(stage8), .rhythm(rhythm), 
+      .opout(opout), .faddr(faddr), .fdata(fdata), 
+      .maddr(maddr), .mdata(mdata));
    
    // independent from delay
-   TemporalMixer tm(
-      xin, reset, xena, 
-      slot, stage, rhythm, maddr, mdata, mixout);
+   TemporalMixer temporalmixer(
+      .clk(xin), .reset(reset), .clkena(xena), 
+      .slot(slot), .stage(stage), .rhythm(rhythm), 
+      .maddr(maddr), .mdata(mdata), .mixout(mixout));
    
 endmodule

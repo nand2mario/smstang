@@ -29,7 +29,17 @@ module sdram (
     input      [24:1] addr2,       
     input      [15:0] din2,        
     output reg [15:0] dout2,       
-    input       [1:0] be2
+    input       [1:0] be2,
+
+    output     [15:0] SDRAM_DQ,
+    output     [11:0] SDRAM_A,
+    output     [1:0]  SDRAM_BA,
+    output            SDRAM_nCS,
+    output            SDRAM_nWE,
+    output            SDRAM_nRAS,
+    output            SDRAM_nCAS,
+    output            SDRAM_CKE,
+    output     [1:0]  SDRAM_DQM
 );
 
 reg [15:0] mem [0:16*1024*1024-1];  // 32MB of memory

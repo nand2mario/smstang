@@ -33,17 +33,17 @@ module EnvelopeMemory(clk, reset, waddr, wr, wdata, raddr, rdata);
    input     clk;
    input     reset;
    
-   input [4:0]            waddr;
+   input SLOT_TYPE        waddr;
    input                  wr;
    input EGDATA_TYPE      wdata;
-   input [4:0]            raddr;
-   output EGDATA_TYPE rdata;
+   input SLOT_TYPE        raddr;
+   output EGDATA_TYPE     rdata;
    
-   reg [24:0] egdata_set [0:18-1];
+   EGDATA_TYPE egdata_set [0:18-1];
    
    always @(posedge clk or posedge reset) begin
       
-      reg [4:0] init_slot;
+      reg [4:0] init_slot;    // 0-18
       
       if (reset)
          

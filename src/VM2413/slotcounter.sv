@@ -50,13 +50,13 @@ module SlotCounter(clk, reset, clkena, slot, stage);
       else  begin
          if (clkena) begin
             if (ff_count == 7'b1000111)		// 71
-               ff_count <= {7{1'b0}};
+               ff_count <= '0;
             else
                ff_count <= ff_count + 1;
          end 
       end 
    
    assign stage = ff_count[1:0];		//0-3 cycle
-   assign slot = ff_count[6:2];		//0-17 cycle
+   assign slot  = ff_count[6:2];		//0-17 cycle
    
 endmodule
