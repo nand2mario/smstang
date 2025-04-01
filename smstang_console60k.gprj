@@ -7,25 +7,6 @@
     <FileList>
         <File path="src/MC8123.v" type="file.verilog" enable="1"/>
         <File path="src/SEGASYS1_PRGDEC.v" type="file.verilog" enable="1"/>
-        <File path="src/VM2413/attacktable.sv" type="file.verilog" enable="1"/>
-        <File path="src/VM2413/controller.sv" type="file.verilog" enable="1"/>
-        <File path="src/VM2413/envelopegenerator.sv" type="file.verilog" enable="1"/>
-        <File path="src/VM2413/envelopememory.sv" type="file.verilog" enable="1"/>
-        <File path="src/VM2413/feedbackmemory.sv" type="file.verilog" enable="1"/>
-        <File path="src/VM2413/lineartable.sv" type="file.verilog" enable="1"/>
-        <File path="src/VM2413/operator.sv" type="file.verilog" enable="1"/>
-        <File path="src/VM2413/opll.sv" type="file.verilog" enable="1"/>
-        <File path="src/VM2413/outputgenerator.sv" type="file.verilog" enable="1"/>
-        <File path="src/VM2413/outputmemory.sv" type="file.verilog" enable="1"/>
-        <File path="src/VM2413/phasegenerator.sv" type="file.verilog" enable="1"/>
-        <File path="src/VM2413/phasememory.sv" type="file.verilog" enable="1"/>
-        <File path="src/VM2413/registermemory.sv" type="file.verilog" enable="1"/>
-        <File path="src/VM2413/sinetable.sv" type="file.verilog" enable="1"/>
-        <File path="src/VM2413/slotcounter.sv" type="file.verilog" enable="1"/>
-        <File path="src/VM2413/temporalmixer.sv" type="file.verilog" enable="1"/>
-        <File path="src/VM2413/vm2413.sv" type="file.verilog" enable="1"/>
-        <File path="src/VM2413/voicememory.sv" type="file.verilog" enable="1"/>
-        <File path="src/VM2413/voicerom.sv" type="file.verilog" enable="1"/>
         <File path="src/audiomix.v" type="file.verilog" enable="1"/>
         <File path="src/cheatcodes.sv" type="file.verilog" enable="1"/>
         <File path="src/compressor.sv" type="file.verilog" enable="1"/>
@@ -55,10 +36,10 @@
         <File path="src/jt89/jt89_vol.v" type="file.verilog" enable="1"/>
         <File path="src/lightgun.sv" type="file.verilog" enable="1"/>
         <File path="src/parts.v" type="file.verilog" enable="1"/>
-        <File path="src/pll/pll_12.v" type="file.verilog" enable="1"/>
-        <File path="src/pll/pll_27.v" type="file.verilog" enable="1"/>
-        <File path="src/pll/pll_53.v" type="file.verilog" enable="1"/>
-        <File path="src/pll/pll_74.v" type="file.verilog" enable="1"/>
+        <File path="src/plla/pll_12.v" type="file.verilog" enable="1"/>
+        <File path="src/plla/pll_27.v" type="file.verilog" enable="1"/>
+        <File path="src/plla/pll_53.v" type="file.verilog" enable="1"/>
+        <File path="src/plla/pll_74.v" type="file.verilog" enable="1"/>
         <File path="src/sdram.v" type="file.verilog" enable="1"/>
         <File path="src/sms2hdmi.sv" type="file.verilog" enable="1"/>
         <File path="src/smstang_top.sv" type="file.verilog" enable="1"/>
@@ -79,7 +60,26 @@
         <File path="src/vdp_sprite_shifter.v" type="file.verilog" enable="1"/>
         <File path="src/vdp_sprites.v" type="file.verilog" enable="1"/>
         <File path="src/video.v" type="file.verilog" enable="1"/>
-        <File path="src/boards/console60k.cst" type="file.cst" enable="1"/>
+        <File path="src/vm2413_vhdl/AttackTable.vhd" type="file.vhdl" enable="1"/>
+        <File path="src/vm2413_vhdl/Controller.vhd" type="file.vhdl" enable="1"/>
+        <File path="src/vm2413_vhdl/EnvelopeGenerator.vhd" type="file.vhdl" enable="1"/>
+        <File path="src/vm2413_vhdl/EnvelopeMemory.vhd" type="file.vhdl" enable="1"/>
+        <File path="src/vm2413_vhdl/FeedbackMemory.vhd" type="file.vhdl" enable="1"/>
+        <File path="src/vm2413_vhdl/LinearTable.vhd" type="file.vhdl" enable="1"/>
+        <File path="src/vm2413_vhdl/Operator.vhd" type="file.vhdl" enable="1"/>
+        <File path="src/vm2413_vhdl/Opll.vhd" type="file.vhdl" enable="1"/>
+        <File path="src/vm2413_vhdl/OutputGenerator.vhd" type="file.vhdl" enable="1"/>
+        <File path="src/vm2413_vhdl/OutputMemory.vhd" type="file.vhdl" enable="1"/>
+        <File path="src/vm2413_vhdl/PhaseGenerator.vhd" type="file.vhdl" enable="1"/>
+        <File path="src/vm2413_vhdl/PhaseMemory.vhd" type="file.vhdl" enable="1"/>
+        <File path="src/vm2413_vhdl/RegisterMemory.vhd" type="file.vhdl" enable="1"/>
+        <File path="src/vm2413_vhdl/SineTable.vhd" type="file.vhdl" enable="1"/>
+        <File path="src/vm2413_vhdl/SlotCounter.vhd" type="file.vhdl" enable="1"/>
+        <File path="src/vm2413_vhdl/TemporalMixer.vhd" type="file.vhdl" enable="1"/>
+        <File path="src/vm2413_vhdl/VoiceMemory.vhd" type="file.vhdl" enable="1"/>
+        <File path="src/vm2413_vhdl/VoiceRom.vhd" type="file.vhdl" enable="1"/>
+        <File path="src/vm2413_vhdl/vm2413.vhd" type="file.vhdl" enable="1"/>
+        <File path="src/boards/console.cst" type="file.cst" enable="1"/>
         <File path="src/cpu.rao" type="file.gao" enable="0"/>
         <File path="src/hdmi.rao" type="file.gao" enable="0"/>
     </FileList>

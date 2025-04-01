@@ -84,7 +84,7 @@
  "VCC" : "0.9",
  "VCCAUX" : "3.3",
  "VCCX" : "3.3",
- "VHDL_Standard" : "VHDL_Std_1993",
+ "VHDL_Standard" : "VHDL_Std_2019",
  "Verilog_Standard" : "Vlg_Std_Sysv2017",
  "WAKE_UP" : "0",
  "show_all_warnings" : false,

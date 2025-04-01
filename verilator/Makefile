@@ -3,11 +3,11 @@ D=../src
 SRCS=$D/smstang_top.sv \
 	 $D/jt89/jt89.v $D/jt89/jt89_mixer.v $D/jt89/jt89_noise.v $D/jt89/jt89_tone.v $D/jt89/jt89_vol.v \
 	 $D/t80/t80s.v $D/t80/t80.v $D/t80/t80_alu.v $D/t80/t80_mcode.v $D/t80/t80_reg.v \
-	 $D/VM2413/vm2413.sv $D/VM2413/attacktable.sv $D/VM2413/controller.sv $D/VM2413/envelopegenerator.sv \
-	 $D/VM2413/envelopememory.sv $D/VM2413/feedbackmemory.sv $D/VM2413/lineartable.sv \
-	 $D/VM2413/opll.sv $D/VM2413/outputgenerator.sv $D/VM2413/outputmemory.sv $D/VM2413/phasegenerator.sv \
-	 $D/VM2413/phasememory.sv $D/VM2413/registermemory.sv $D/VM2413/sinetable.sv $D/VM2413/slotcounter.sv \
-	 $D/VM2413/temporalmixer.sv $D/VM2413/voicememory.sv $D/VM2413/voicerom.sv $D/VM2413/operator.sv \
+	 $D/vm2413_verilog/vm2413.sv $D/vm2413_verilog/attacktable.sv $D/vm2413_verilog/controller.sv $D/vm2413_verilog/envelopegenerator.sv \
+	 $D/vm2413_verilog/envelopememory.sv $D/vm2413_verilog/feedbackmemory.sv $D/vm2413_verilog/lineartable.sv \
+	 $D/vm2413_verilog/opll.sv $D/vm2413_verilog/outputgenerator.sv $D/vm2413_verilog/outputmemory.sv $D/vm2413_verilog/phasegenerator.sv \
+	 $D/vm2413_verilog/phasememory.sv $D/vm2413_verilog/registermemory.sv $D/vm2413_verilog/sinetable.sv $D/vm2413_verilog/slotcounter.sv \
+	 $D/vm2413_verilog/temporalmixer.sv $D/vm2413_verilog/voicememory.sv $D/vm2413_verilog/voicerom.sv $D/vm2413_verilog/operator.sv \
 	 $D/verilator/sdram_sim.v $D/verilator/test_loader.v \
 	 $D/audiomix.v $D/dpram.v $D/hybrid_pwm_sd.v $D/io.v $D/MC8123.v $D/parts.v \
 	 $D/SEGASYS1_PRGDEC.v $D/spram.v $D/sprom.v $D/system.v $D/vdp.v $D/vdp_background.v \

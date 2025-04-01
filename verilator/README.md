@@ -15,3 +15,6 @@ make sim
 ```
 
 You can also get sound output with `make audio`.
+
+Currently the verilog version of VM2413 is buggy. So FM simulation is not working.
+However the actual core uses VHDL VM2413 and is fine.
