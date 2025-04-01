@@ -78,7 +78,7 @@ module Operator(clk, reset, clkena, slot, stage, rhythm, wf, fb, noise, pgout, e
       .data(data));    // Integer part 8bit, decimal part 6bit
    
    assign w_is_carrier = slot[0];
-   assign w_modula_m   = fb == 3'b0 ? 20'b0 : {1'b0, fdata.value, 1'b0, 9'b0} >> (3'b111 ^ fb);
+   assign w_modula_m   = fb == 3'b0 ? 20'b0 : ({1'b0, fdata.value, 1'b0, 9'b0} >> (3'b111 ^ fb));
    assign w_modula_c   = {fdata.value, 2'b0, 9'b0};
    assign w_modula     = w_is_carrier ? w_modula_c : w_modula_m;
    

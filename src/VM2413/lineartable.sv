@@ -35,16 +35,17 @@
 
 // ----------------------------------------------------------------------------
 import vm2413::*;
+
+// nand2mario: signed multiplication
 module linear_table_mul(i0, i1, o);
-   input [5:0]  i0;		//Unsigned 6bit (6bit decimal)
-   input [9:0]  i1;		//Signed 10bit (integer part 10bit)
-   output [9:0] o;		//Signed 10bit (integer part 10bit)
+   input         [5:0] i0;		// Unsigned 6bit (6bit decimal)
+   input  signed [9:0] i1;		// Signed 10bit (integer part 10bit)
+   output signed [9:0] o;		// Signed 10bit (integer part 10bit)
    
-   wire [16:0]  w_mul;		//Signed 17bit (16bit integer part)
+   wire signed [16:0] w_mul;	//Signed 17bit (16bit integer part)
    
-   assign w_mul = {1'b0, i0} * i1;
-   assign o = w_mul[15:6];		//MSB cut, decimal part lower 6bit cut
-   
+   assign w_mul = signed'({1'b0, i0}) * i1;
+   assign o = w_mul[15:6];		// MSB cut, decimal part lower 6bit cut
 endmodule
 
 // ----------------------------------------------------------------------------

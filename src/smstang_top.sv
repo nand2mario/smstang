@@ -100,6 +100,7 @@ reg ce_cpu;
 reg ce_snd;
 reg ce_vdp;
 reg ce_sp;
+reg ce_fm;
 reg [4:0] clkd;
 always @(posedge clk_sys) begin
 
@@ -107,6 +108,7 @@ always @(posedge clk_sys) begin
 	ce_vdp <= 0;//div5
 	ce_pix <= 0;//div10
 	ce_cpu <= 0;//div15
+	ce_fm <= 0;
 	clkd <= clkd + 1'd1;
 	if (clkd==29) begin
 		clkd <= 0;
@@ -115,6 +117,8 @@ always @(posedge clk_sys) begin
 	end else if (clkd==24) begin
 		ce_cpu <= 1;  //-- changed cpu phase to please VDPTEST HCounter test;
 		ce_vdp <= 1;
+	end else if (clkd==23) begin
+		ce_fm <= 1;
 	end else if (clkd==19) begin
 		ce_vdp <= 1;
 		ce_pix <= 1;
@@ -124,6 +128,8 @@ always @(posedge clk_sys) begin
 		ce_cpu <= 1;
 		ce_vdp <= 1;
 		ce_pix <= 1;
+	end else if (clkd==8) begin
+		ce_fm <= 1;
 	end else if (clkd==4) begin
 		ce_vdp <= 1;
 	end
@@ -185,7 +191,7 @@ reg [7:0] DSW[3];
 
 system #(63) system
 (
-	.clk_sys(clk_sys), .ce_cpu(ce_cpu), .ce_vdp(ce_vdp),
+	.clk_sys(clk_sys), .ce_cpu(ce_cpu), .ce_vdp(ce_vdp), .ce_fm(ce_fm),
 	.ce_pix(ce_pix), .ce_sp(ce_sp), .turbo(turbo),
 	.gg(gg), .ggres(ggres), .systeme(systeme),
 	.bios_en(/*~status[11] & ~systeme*/1'b0), .RESET_n(~reset),

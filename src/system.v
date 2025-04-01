@@ -1,9 +1,10 @@
 
-module system(clk_sys, ce_cpu, ce_vdp, ce_pix, ce_sp, turbo, gg, ggres, systeme, bios_en, GG_EN, GG_CODE, GG_RESET, GG_AVAIL, RESET_n, rom_rd, rom_a, rom_do, j1_up, j1_down, j1_left, j1_right, j1_tl, j1_tr, j1_th, j1_start, j1_coin, j1_a3, j2_up, j2_down, j2_left, j2_right, j2_tl, j2_tr, j2_th, j2_start, j2_coin, j2_a3, pause, E0Type, E1Use, E2Use, E0, F2, F3, has_paddle, has_pedal, paddle, paddle2, pedal, j1_tr_out, j1_th_out, j2_tr_out, j2_th_out, x, y, color, palettemode, mask_column, black_column, smode_M1, smode_M2, smode_M3, ysj_quirk, pal, region, mapper_lock, vdp_enables, psg_enables, audioL, audioR, fm_ena, dbr, sp64, ram_a, ram_d, ram_we, ram_q, nvram_a, nvram_d, nvram_we, nvram_q, encrypt, key_a, key_d, ROMCL, ROMAD, ROMDT, ROMEN);
+module system(clk_sys, ce_cpu, ce_fm, ce_vdp, ce_pix, ce_sp, turbo, gg, ggres, systeme, bios_en, GG_EN, GG_CODE, GG_RESET, GG_AVAIL, RESET_n, rom_rd, rom_a, rom_do, j1_up, j1_down, j1_left, j1_right, j1_tl, j1_tr, j1_th, j1_start, j1_coin, j1_a3, j2_up, j2_down, j2_left, j2_right, j2_tl, j2_tr, j2_th, j2_start, j2_coin, j2_a3, pause, E0Type, E1Use, E2Use, E0, F2, F3, has_paddle, has_pedal, paddle, paddle2, pedal, j1_tr_out, j1_th_out, j2_tr_out, j2_th_out, x, y, color, palettemode, mask_column, black_column, smode_M1, smode_M2, smode_M3, ysj_quirk, pal, region, mapper_lock, vdp_enables, psg_enables, audioL, audioR, fm_ena, dbr, sp64, ram_a, ram_d, ram_we, ram_q, nvram_a, nvram_d, nvram_we, nvram_q, encrypt, key_a, key_d, ROMCL, ROMAD, ROMDT, ROMEN);
    parameter          MAX_SPPL = 7;
    parameter [32*8:1] BASE_DIR = "";
    input              clk_sys;
    input              ce_cpu;
+   input              ce_fm;
    input              ce_vdp;
    input              ce_pix;
    input              ce_sp;
@@ -330,6 +331,9 @@ module system(clk_sys, ce_cpu, ce_vdp, ce_pix, ce_sp, turbo, gg, ggres, systeme,
       .rst((~RESET_n))
    );
 
+`define IKAOPLL
+
+`ifdef VM2413
    opll fm(
       .xin(clk_sys),
       .xena(ce_cpu),
@@ -340,6 +344,44 @@ module system(clk_sys, ce_cpu, ce_vdp, ce_pix, ce_sp, turbo, gg, ggres, systeme,
       .ic_n(RESET_n),
       .mixout(FM_out)
    );
+`endif
+
+`ifdef IKAOPLL
+wire [15:0] ikaopll_out;
+wire ikaopll_out_valid;
+
+IKAOPLL #(
+    .FULLY_SYNCHRONOUS(1),
+    .FAST_RESET(1),
+    .ALTPATCH_CONFIG_MODE(0),
+    .USE_PIPELINED_MULTIPLIER(1)
+) main (
+    .i_XIN_EMUCLK(clk_sys), .o_XOUT(),
+    .i_phiM_PCEN_n(~ce_cpu),
+    .i_IC_n(RESET_n),
+    .i_ALTPATCH_EN(1'b0),
+    .i_CS_n(1'b0),
+    .i_WR_n(1'b0),
+    .i_A0(fm_a),
+    .i_D(fm_d),
+    .i_ACC_SIGNED_MOVOL(5'sd2),
+    .i_ACC_SIGNED_ROVOL(5'sd3),
+    .o_ACC_SIGNED_STRB(ikaopll_out_valid),
+    .o_ACC_SIGNED(ikaopll_out),
+    .o_D(), .o_D_OE(), .o_DAC_EN_MO(), .o_DAC_EN_RO(),
+    .o_IMP_NOFLUC_SIGN(),.o_IMP_NOFLUC_MAG(),
+    .o_IMP_FLUC_SIGNED_MO(), .o_IMP_FLUC_SIGNED_RO()
+);
+
+reg [13:0] FM_out_reg;
+assign FM_out = FM_out_reg;
+always @(posedge clk_sys) begin
+   if (ikaopll_out_valid) begin
+      FM_out_reg <= ikaopll_out[15:2];
+   end
+end
+
+`endif
 
    always @(posedge clk_sys) begin
       if (RESET_n == 1'b0) begin

@@ -3,20 +3,26 @@ D=../src
 SRCS=$D/smstang_top.sv \
 	 $D/jt89/jt89.v $D/jt89/jt89_mixer.v $D/jt89/jt89_noise.v $D/jt89/jt89_tone.v $D/jt89/jt89_vol.v \
 	 $D/t80/t80s.v $D/t80/t80.v $D/t80/t80_alu.v $D/t80/t80_mcode.v $D/t80/t80_reg.v \
-	 $D/VM2413/vm2413.sv $D/VM2413/attacktable.sv $D/VM2413/controller.sv $D/VM2413/envelopegenerator.sv \
-	 $D/VM2413/envelopememory.sv $D/VM2413/feedbackmemory.sv $D/VM2413/lineartable.sv \
-	 $D/VM2413/opll.sv $D/VM2413/outputgenerator.sv $D/VM2413/outputmemory.sv $D/VM2413/phasegenerator.sv \
-	 $D/VM2413/phasememory.sv $D/VM2413/registermemory.sv $D/VM2413/sinetable.sv $D/VM2413/slotcounter.sv \
-	 $D/VM2413/temporalmixer.sv $D/VM2413/voicememory.sv $D/VM2413/voicerom.sv $D/VM2413/operator.sv \
 	 $D/verilator/sdram_sim.v $D/verilator/test_loader.v \
+	 $D/ikaopll/IKAOPLL.v $D/ikaopll/IKAOPLL_dac.v $D/ikaopll/IKAOPLL_eg.v $D/ikaopll/IKAOPLL_lfo.v \
+	 $D/ikaopll/IKAOPLL_op.v $D/ikaopll/IKAOPLL_pg.v $D/ikaopll/IKAOPLL_reg.v $D/ikaopll/IKAOPLL_primitives.v \
+	 $D/ikaopll/IKAOPLL_timinggen.v \
 	 $D/audiomix.v $D/dpram.v $D/hybrid_pwm_sd.v $D/io.v $D/MC8123.v $D/parts.v \
 	 $D/SEGASYS1_PRGDEC.v $D/spram.v $D/sprom.v $D/system.v $D/vdp.v $D/vdp_background.v \
 	 $D/vdp_cram.v $D/vdp_main.v $D/vdp_sprites.v $D/vdp_sprite_shifter.v $D/video.v \
 	 $D/cheatcodes.sv $D/compressor.sv $D/lightgun.sv
 
+#  $D/VM2413/vm2413.sv $D/VM2413/attacktable.sv $D/VM2413/controller.sv $D/VM2413/envelopegenerator.sv \
+#  $D/VM2413/envelopememory.sv $D/VM2413/feedbackmemory.sv $D/VM2413/lineartable.sv \
+#  $D/VM2413/opll.sv $D/VM2413/outputgenerator.sv $D/VM2413/outputmemory.sv $D/VM2413/phasegenerator.sv \
+#  $D/VM2413/phasememory.sv $D/VM2413/registermemory.sv $D/VM2413/sinetable.sv $D/VM2413/slotcounter.sv \
+#  $D/VM2413/temporalmixer.sv $D/VM2413/voicememory.sv $D/VM2413/voicerom.sv $D/VM2413/operator.sv \
+
 DEPS=
 INCLUDES=-I$D
 
+# VERILATE_FLAGS=-Wno-PINMISSING -Wno-WIDTHEXPAND -Wno-WIDTHTRUNC
+VERILATE_FLAGS=-Wno-PINMISSING
 CFLAGS_SDL=$(shell sdl2-config --cflags) -g -O2
 LIBS_SDL=$(shell sdl2-config --libs) -g
 
@@ -30,7 +36,7 @@ verilate: ./obj_dir/V$N.cpp
 	@echo
 	@echo "### VERILATE ####"
 	mkdir -p obj_dir
-	verilator --top-module $N +1800-2023ext+sv --trace-fst -Wno-PINMISSING -Wno-WIDTHEXPAND -Wno-WIDTHTRUNC -cc --exe -CFLAGS "$(CFLAGS_SDL)" -LDFLAGS "$(LIBS_SDL)" $(INCLUDES) $(SRCS) sim_main.cpp
+	verilator --top-module $N +1800-2023ext+sv --trace-fst $(VERILATE_FLAGS) -cc --exe -CFLAGS "$(CFLAGS_SDL)" -LDFLAGS "$(LIBS_SDL)" $(INCLUDES) $(SRCS) sim_main.cpp
 #	verilator --top-module $N --timing --trace-fst -Wno-WIDTH -Wno-PINMISSING -Wno-UNOPTFLAT -cc --exe -CFLAGS "$(CFLAGS_SDL)" -LDFLAGS "$(LIBS_SDL)" $(INCLUDES) $(SRCS) sim_main.cpp
 
 ./obj_dir/V$N: verilate

@@ -38,14 +38,15 @@
 
 import vm2413::*;
 
+// nand2mario: the original code uses ieee.std_logic_signed. so the multiplication is signed.
 module attack_table_mul(i0, i1, o);
-   input [7:0]   i0;		// Unsigned 8bit (0bit integer part, 8bit decimal part)
-   input [7:0]   i1;		// Signed 8bit (Integer part 8bit)
-   output [13:0] o;		// Signed 14bit (8bit integer part, 6bit decimal part)
+   input         [7:0]   i0;		// Unsigned 8bit (0bit integer part, 8bit decimal part)
+   input  signed [7:0]   i1;		// Signed 8bit (Integer part 8bit)
+   output signed [13:0]  o;		// Signed 14bit (8bit integer part, 6bit decimal part)
    
-   wire [16:0]   w_mul;
+   wire signed [16:0] w_mul;
    
-   assign w_mul = {1'b0, i0} * i1;
+   assign w_mul = signed'({1'b0, i0}) * i1;
    assign o = w_mul[15:2];		//bit16 is the same as bit15 so cut it. Truncate bits 1 to 0 (decimal part).
 endmodule
 
