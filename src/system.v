@@ -330,6 +330,9 @@ module system(clk_sys, ce_cpu, ce_vdp, ce_pix, ce_sp, turbo, gg, ggres, systeme,
       .rst((~RESET_n))
    );
 
+`define USE_YM2413_NUKED
+
+`ifdef USE_VM2413
    opll fm(
       .xin(clk_sys),
       .xena(ce_cpu),
@@ -340,6 +343,32 @@ module system(clk_sys, ce_cpu, ce_vdp, ce_pix, ce_sp, turbo, gg, ggres, systeme,
       .ic_n(RESET_n),
       .mixout(FM_out)
    );
+`endif
+
+`ifdef USE_YM2413_NUKED
+   wire [9:0] opll_ro;
+   wire [9:0] opll_mo;
+   wire zclk;
+   zclk_gen zclk_gen_inst(
+      .MCLK(clk_sys),
+      .ZCLK(zclk)
+   );
+   ym2413 fm(
+      .MCLK(clk_sys),
+      .XIN(zclk),
+      .IC(RESET_n),
+      .DATA_i(fm_d),
+      .CS(1'b0),
+      .WE(1'b0),
+      .A0(fm_a),
+      .DATA_o(),
+      .DATA_d(),
+      .RO(opll_ro),
+      .MO(opll_mo),
+      .dac_clk_o()
+   );
+   assign FM_out = {opll_ro[9], opll_ro, 5'h0} + {opll_mo[9], opll_mo, 5'h0};
+`endif
 
    always @(posedge clk_sys) begin
       if (RESET_n == 1'b0) begin
