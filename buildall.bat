@@ -9,11 +9,11 @@ echo
 %GWSH% build.tcl console60k
 if %errorlevel% neq 0 exit /b %errorlevel%
 
-@REM echo
-@REM echo "============ Building console138k ==============="
-@REM echo
-@REM %GWSH% build.tcl console138k 
-@REM if %errorlevel% neq 0 exit /b %errorlevel%
+echo
+echo "============ Building console138k ==============="
+echo
+%GWSH% build.tcl console138k 
+if %errorlevel% neq 0 exit /b %errorlevel%
 
 dir impl\pnr\*.fs
 

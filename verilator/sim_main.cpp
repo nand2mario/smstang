@@ -92,7 +92,9 @@ void load_rom(char *filename)
 	}
 	fseek(f, 0, SEEK_END);
 	long size = ftell(f);
-	fseek(f, 0, SEEK_SET); // return to start of file
+	// return to start of file, skipping 512-byte header if there is one
+	fseek(f, size % 1024, SEEK_SET); 
+	size -= size % 1024;
 	uint8_t *rom = (uint8_t *)malloc(size);
 	size_t r = fread(rom, 1, size, f);
 	if (r != size)
