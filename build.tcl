@@ -15,7 +15,7 @@ if {$dev eq "console60k"} {
     add_file -type verilog "src/plla/pll_53.v"
     add_file -type verilog "src/plla/pll_74.v"
 } elseif {$dev eq "console138k"} {
-    set_device GW5AT-LV138PG484AC1/I0 -device_version B
+    set_device GW5AST-LV138PG484AC1/I0 -device_version B
     add_file -type cst "src/boards/console.cst"
     add_file -type verilog "src/pll/pll_12.v"
     add_file -type verilog "src/pll/pll_27.v"

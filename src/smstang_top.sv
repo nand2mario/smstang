@@ -196,12 +196,13 @@ system #(63) system
 	.rom_rd(ram_rd), .rom_a(ram_addr), .rom_do(ram_dout),
 
 	.j1_up(~joy1[4]), .j1_down(~joy1[5]), .j1_left(~joy1[6]),
-	.j1_right(~joy1[7]), .j1_tl(~joy1[0]), .j1_tr(~joy1[8]),
+	.j1_right(~joy1[7]), .j1_tl(~joy1[0] & ~joy1[3]), 	// j1_t1 is button 1 (also start). joy1[0] is B, joy1[3] is START
+	.j1_tr(~joy1[8]),
 	.j1_th(joya_th), .j1_start(swap ? ~joy1[3] : ~joy2[3]), .j1_coin(swap ? ~joy1[11] : ~joy1[11]),
 	.j1_a3(swap ? ~joy1[10] : ~joy1[10]),
 
 	.j2_up(~joy2[4]), .j2_down(~joy2[5]), .j2_left(~joy2[6]),
-	.j2_right(~joy2[7]), .j2_tl(~joy2[0]), .j2_tr(~joy2[8]),
+	.j2_right(~joy2[7]), .j2_tl(~joy2[0] & ~joy2[3]), .j2_tr(~joy2[8]),
 	.j2_th(joyb_th), .pause(joy1[6]&joy2[6]), .j2_start(swap ? ~joy1[11] : ~joy2[11]),
 	.j2_coin(swap ? ~joy1[10] : ~joy2[10]), .j2_a3(swap ? ~joy1[8] : ~joy2[8]),
 
