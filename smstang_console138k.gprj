@@ -80,6 +80,7 @@
         <File path="src/vm2413/voicememory.vhd" type="file.vhdl" enable="1"/>
         <File path="src/vm2413/voicerom.vhd" type="file.vhdl" enable="1"/>
         <File path="src/boards/console.cst" type="file.cst" enable="1"/>
+        <File path="src/smstang.sdc" type="file.sdc" enable="1"/>
         <File path="src/cpu.rao" type="file.gao" enable="0"/>
         <File path="src/hdmi.rao" type="file.gao" enable="0"/>
     </FileList>

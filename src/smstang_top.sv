@@ -96,6 +96,11 @@ pll_74 pll_74_inst(
 );
 `endif
 
+// clk_sys:   012345678901234567890123456789
+// ce_cpu               1              1
+// ce_vdp     1    1    1    1    1    1
+// ce_pix     1         1         1
+// ce_sp      1 1 1 1 1 1 1 1 1 1 1 1 1 1 1       (sprite)
 reg ce_cpu;
 reg ce_snd;
 reg ce_vdp;
@@ -257,7 +262,6 @@ video video
 	.vblank(VBlank)
 );
 
-
 ////////////////// Memories //////////////////
 
 `ifndef VERILATOR
@@ -270,23 +274,16 @@ reg [23:0] loading_addr_next, loading_addr;
 reg loading_req;
 reg [7:0] loading_data;
 
-// reg ram_rd_req_r;
-// wire ram_rd_req = ram_rd ^ ram_rd_req_r;        // turn ram_rd pulse into toggle request
-// always @(posedge clk_sys) ram_rd_req_r <= ram_rd_req;
-
+// nand2mario: memory accesses start 2 cycles after ce_cpu
 reg ram_rd_req;
-reg [21:0] ram_addr_r;
-reg ram_rd_r;
+reg ce_cpu_r, ce_cpu_rr;
 always @(posedge clk_sys) begin
-	ram_rd_r <= ram_rd;
-	if (ram_rd) begin
-		ram_addr_r <= ram_addr;
-		if (ram_addr_r != ram_addr || ram_rd && !ram_rd_r) begin
-			ram_rd_req <= ~ram_rd_req;
-		end
+	ce_cpu_r <= ce_cpu;
+	ce_cpu_rr <= ce_cpu_r;
+	if (ce_cpu_rr && ram_rd) begin
+		ram_rd_req <= ~ram_rd_req;
 	end
 end
-
 
 sdram ram (
 	.clk(clk_sys), .resetn(locked), .refresh_allowed(1'b1), .busy(),

@@ -116,6 +116,8 @@ add_file -type verilog "src/vdp_sprite_shifter.v"
 add_file -type verilog "src/vdp_sprites.v"
 add_file -type verilog "src/video.v"
 
+add_file -type sdc "src/smstang.sdc"
+
 set_option -synthesis_tool gowinsynthesis
 set_option -top_module smstang_top
 set_option -verilog_std sysv2017
